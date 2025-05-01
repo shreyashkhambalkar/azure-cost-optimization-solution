@@ -1,6 +1,11 @@
-module.exports = async function (context, req) {
-    const id = req.query.id || (req.body && req.body.id);
-    context.log("Reading billing record for ID:", id);
-
-    // Placeholder logic: Check Cosmos, fallback to Blob
-};
+// resolveBlobPath.js
+function resolveBlobPath(recordId, recordDateStr) {
+    const date = new Date(recordDateStr);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+  
+    return `${year}/${month}/${recordId}.json`;
+  }
+  
+  module.exports = resolveBlobPath;
+  
